@@ -1,6 +1,6 @@
 package poo.repository;
 
-import poo.entity.Bill;
+
 import poo.entity.Product;
 
 import java.util.List;

@@ -19,19 +19,19 @@ public class Main {
 
             switch (option) {
                 case 1:
-                    productController.addProduct();
+                    productController.createProduct();
                     break;
                 case 2:
                     productController.updateProduct();
                     break;
                 case 3:
-                    productController.listProductById();
+                    productController.listById();
                     break;
                 case 4:
                     productController.deleteProduct();
                     break;
                 case 5:
-                    productController.listProduct();
+                    productController.listAll();
                     break;
                 case 6:
                     billController.createBill();
@@ -43,7 +43,7 @@ public class Main {
                     billController.listBillById();
                     break;
                 case 9:
-                    billController.listbills();
+                    billController.listBill();
                     break;
                 case 0:
                     break;

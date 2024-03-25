@@ -1,6 +1,6 @@
 package poo.entity;
 
-public class Dairy extends Product {
+public class Dairy extends Product{
     private int count;
 
     public Dairy() {
@@ -21,5 +21,12 @@ public class Dairy extends Product {
 
     public void setCount(int count) {
         this.count = count;
+    }
+
+    @Override
+    public String toString() {
+        return "Dairy{" +
+                "count=" + count +
+                '}';
     }
 }

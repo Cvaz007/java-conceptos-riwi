@@ -7,8 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BillModel implements BillRepository {
-    static List<Bill> bills = new ArrayList<Bill>();
-
+    static List<Bill> bills = new ArrayList<>();
     @Override
     public void saveBill(Bill bill) {
         bills.add(bill);
@@ -16,10 +15,9 @@ public class BillModel implements BillRepository {
 
     @Override
     public Bill findById(String id) {
-        for (Bill bill : bills) {
-            if(bill.getId().equals(id)){
+        for (Bill bill : bills){
+            if (bill.getId().equals(id))
                 return bill;
-            }
         }
         return null;
     }
@@ -31,6 +29,6 @@ public class BillModel implements BillRepository {
 
     @Override
     public void deleteBill(String id) {
-        bills.remove(findById(id));
+        bills.removeIf(bill -> bill.getId().equals(id));
     }
 }
