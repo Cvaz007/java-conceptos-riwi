@@ -129,4 +129,32 @@ public class BillDetailModel implements BillDetailRepository {
         ConfigurationDB.closeConnection();
         return billDetails;
     }
+
+    public List<BillDetail> findAllByBillId(String billId) {
+        objConnection = ConfigurationDB.openConnection();
+        List<BillDetail> billDetails = new ArrayList<BillDetail>();
+
+        try {
+            String sql = "SELECT * FROM billDetail WHERE billId = ?";
+
+            PreparedStatement statement = (PreparedStatement) objConnection.prepareStatement(sql);
+            statement.setString(1, billId);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                String id = resultSet.getString("id");
+                String productId = resultSet.getString("productId");
+                int quantity = resultSet.getInt("quantity");
+                double subtotal = resultSet.getDouble("subtotal");
+
+                BillDetail billDetail = new BillDetail(id, productId, billId, quantity, subtotal);
+                billDetails.add(billDetail);
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException("Error: " + e.getMessage(), e);
+        }
+        ConfigurationDB.closeConnection();
+        return billDetails;
+    }
 }
+

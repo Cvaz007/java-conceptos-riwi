@@ -1,11 +1,9 @@
-package poo.controller;
+package jdbc.controller;
 
-import poo.entity.Bill;
-import poo.entity.Product;
-import poo.model.BillModel;
-import poo.service.BillService;
+import jdbc.entity.Bill;
+import jdbc.model.BillModel;
+import jdbc.service.BillService;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class BillController {
@@ -20,13 +18,12 @@ public class BillController {
     }
 
     public void createBill() {
-        System.out.print("User name: ");
-        String userName = scanner.next();
+        System.out.print("Type the customer name: ");
+        String customer = scanner.next();
+        double total = 0;
         String id = String.valueOf(System.currentTimeMillis());
-        ArrayList<Product> products = (ArrayList<Product>) service.addProducts();
-        double total = service.calculateTotal(products);
 
-        Bill newBill = new Bill(id, products, total, userName);
+        Bill newBill = new Bill(id, total, customer);
         model.saveBill(newBill);
     }
     public void listbills(){

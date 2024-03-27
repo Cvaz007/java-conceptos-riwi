@@ -12,9 +12,9 @@ public class ConfigurationDB {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
 
-            String url = "jdbc:mysql://bfybdqrcot9xmax6zpsg-mysql.services.clever-cloud.com:3306/bfybdqrcot9xmax6zpsg";
-            String user = "uojvbdsxfwdczgbr";
-            String password = "DazyValQoy1rmavnjJPG";
+            String url = "jdbc:mysql://uge4vnzaaj1v6bpb:95uZnRYik2bpf1Mx7ooN@bbnwv8ihldhqodqkctl2-mysql.services.clever-cloud.com:3306/bbnwv8ihldhqodqkctl2";
+            String user = "uge4vnzaaj1v6bpb";
+            String password = "95uZnRYik2bpf1Mx7ooN";
 
             connection = (Connection) DriverManager.getConnection(url, user, password);
 
