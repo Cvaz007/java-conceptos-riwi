@@ -29,7 +29,7 @@ public class BillController {
     }
 
     public void updateTotal(String id) {
-        Bill bill = service.updateBillTotal(id);
+        Bill bill = service.calculateBillTotal(id);
         model.updateBill(bill);
     }
 
