@@ -1,13 +1,12 @@
 package jdbc.entity;
 
-import poo.entity.Product;
-
 public class BillDetail {
     private String id;
     private String productId;
     private String billId;
     private int quantity;
     private double subtotal;
+
     private Bill bill;
     private Product product;
 

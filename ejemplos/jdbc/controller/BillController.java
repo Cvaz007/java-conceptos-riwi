@@ -17,17 +17,24 @@ public class BillController {
         this.service = new BillService();
     }
 
-    public void createBill() {
+    public Bill createBill() {
         System.out.print("Type the customer name: ");
         String customer = scanner.next();
         double total = 0;
         String id = String.valueOf(System.currentTimeMillis());
 
         Bill newBill = new Bill(id, total, customer);
-        model.saveBill(newBill);
+
+        return model.saveBill(newBill);
     }
-    public void listbills(){
-        for(Bill bill : model.findAll()){
+
+    public void updateTotal(String id) {
+        Bill bill = service.calculateBillTotal(id);
+        model.updateBill(bill);
+    }
+
+    public void listbills() {
+        for (Bill bill : model.findAll()) {
             System.out.println(bill.toString());
         }
     }

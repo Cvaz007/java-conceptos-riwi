@@ -1,6 +1,6 @@
 package jdbc.model;
 
-import jdbc.connection.ConfigurationDB;
+import jdbc.configuration.ConfigurationDB;
 import jdbc.entity.BillDetail;
 import jdbc.repository.BillDetailRepository;
 
@@ -19,7 +19,9 @@ public class BillDetailModel implements BillDetailRepository {
         objConnection = ConfigurationDB.openConnection();
         try {
             String sql = "INSERT INTO billDetail (id,productId, billId, quantity, subtotal) VALUES (?,?,?,?,?);";
+
             PreparedStatement statement = (PreparedStatement) objConnection.prepareStatement(sql);
+
             statement.setString(1, billDetail.getId());
             statement.setString(2, billDetail.getProductId());
             statement.setString(3, billDetail.getBillId());
@@ -157,4 +159,3 @@ public class BillDetailModel implements BillDetailRepository {
         return billDetails;
     }
 }
-

@@ -9,29 +9,28 @@ import java.util.Scanner;
 
 public class BillService {
     Scanner scanner;
-    ProductController productController;
+    ProductController controller;
 
     public BillService() {
         this.scanner = new Scanner(System.in);
-        this.productController = new ProductController();
+        this.controller = new ProductController();
     }
 
-    public List<Product> addProducts() {
-
-        ArrayList<Product> products = new ArrayList<Product>();
+    public List<Product> addProduct(){
+        ArrayList<Product> products = new ArrayList<>();
         String flag = "yes";
-        while (flag.equalsIgnoreCase("yes")) {
-            productController.listProduct();
-            products.add(productController.listProductById());
+        while (flag.equals("yes")){
+            controller.listAll();
+            products.add(controller.listById());
             System.out.print("Do you want to add other product? (yes-no): ");
             flag = scanner.next();
         }
         return products;
     }
 
-    public double calculateTotal(ArrayList<Product> products) {
+    public double calculateTotal(ArrayList<Product> products){
         double total = 0;
-        for (Product product : products) {
+        for (Product product : products){
             total += product.getPrice();
         }
         return total;

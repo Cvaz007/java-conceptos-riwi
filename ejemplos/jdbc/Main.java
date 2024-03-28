@@ -1,8 +1,13 @@
 package jdbc;
 
+import jdbc.configuration.ConfigurationDB;
 import jdbc.controller.BillController;
+import jdbc.controller.BillDetailController;
 import jdbc.controller.ProductController;
+import jdbc.entity.Bill;
+import jdbc.service.BillService;
 
+import java.sql.Connection;
 import java.util.Scanner;
 
 public class Main {
@@ -11,6 +16,8 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         ProductController productController = new ProductController();
         BillController billController = new BillController();
+        BillDetailController billDetailController = new BillDetailController();
+        BillService billService = new BillService();
 
         int option = -1;
         do {
@@ -19,7 +26,7 @@ public class Main {
 
             switch (option) {
                 case 1:
-                    productController.addProduct();
+                    productController.saveProduct();
                     break;
                 case 2:
                     productController.updateProduct();
@@ -31,10 +38,12 @@ public class Main {
                     productController.deleteProduct();
                     break;
                 case 5:
-                    productController.listProduct();
+                    productController.listProducts();
                     break;
                 case 6:
-                    billController.createBill();
+                    Bill bill = billController.createBill();
+                    billService.saveProduct(bill.getId());
+                    billController.updateTotal(bill.getId());
                     break;
                 case 7:
                     billController.deleteBill();
@@ -72,4 +81,5 @@ public class Main {
                 0. EXIT
                 """);
     }
+
 }

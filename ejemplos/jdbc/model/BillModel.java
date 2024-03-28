@@ -1,8 +1,7 @@
 package jdbc.model;
 
-import jdbc.connection.ConfigurationDB;
+import jdbc.configuration.ConfigurationDB;
 import jdbc.entity.Bill;
-import jdbc.entity.Product;
 import jdbc.repository.BillRepository;
 
 import java.sql.Connection;
@@ -38,22 +37,6 @@ public class BillModel implements BillRepository {
     }
 
     @Override
-    public void deleteBill(String id) {
-        objConnection = ConfigurationDB.openConnection();
-
-        try {
-            String sql = "DELETE FROM bill WHERE id = ?;";
-            PreparedStatement statement = (PreparedStatement) objConnection.prepareStatement(sql);
-            statement.setString(1, id);
-
-            statement.execute();
-            System.out.println("The row was deleted successfully");
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    @Override
     public Bill findById(String id) {
         objConnection = ConfigurationDB.openConnection();
         Bill bill;
@@ -78,7 +61,6 @@ public class BillModel implements BillRepository {
         }
         ConfigurationDB.closeConnection();
         return bill;
-
     }
 
     @Override
@@ -106,7 +88,38 @@ public class BillModel implements BillRepository {
         return bills;
     }
 
+    @Override
+    public void deleteBill(String id) {
+        objConnection = ConfigurationDB.openConnection();
+        try {
+            String sql = "DELETE FROM bill WHERE id = ?;";
+            PreparedStatement statement = (PreparedStatement) objConnection.prepareStatement(sql);
+            statement.setString(1, id);
 
+            statement.execute();
+            System.out.println("The row was deleted successfully");
+        } catch (SQLException e) {
+            ConfigurationDB.closeConnection();
+            throw new RuntimeException(e);
+        }
+        ConfigurationDB.closeConnection();
+    }
 
+    @Override
+    public void updateBill(Bill bill) {
+        objConnection = ConfigurationDB.openConnection();
+        try {
+            String sql = "UPDATE bill SET total = ?  WHERE id = ?;";
+            PreparedStatement statement = (PreparedStatement) objConnection.prepareStatement(sql);
+            statement.setDouble(1,bill.getTotal());
+            statement.setString(2, bill.getId());
 
+            statement.execute();
+
+        }catch (SQLException e){
+            ConfigurationDB.closeConnection();
+            System.out.println("Error: "+e.getMessage());
+        }
+        ConfigurationDB.closeConnection();
+    }
 }

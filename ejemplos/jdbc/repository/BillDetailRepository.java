@@ -14,6 +14,4 @@ public interface BillDetailRepository {
     BillDetail findById(String id);
 
     List<BillDetail> findAll();
-
-
 }

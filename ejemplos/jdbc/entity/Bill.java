@@ -1,7 +1,5 @@
 package jdbc.entity;
 
-import java.util.List;
-
 public class Bill {
     private String id;
     private double total;

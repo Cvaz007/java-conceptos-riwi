@@ -17,12 +17,9 @@ public class BillDetailController {
         this.service = new BillDetailService();
     }
 
-    public void createBillDetail() {
+    public void createBillDetail(String billId,String productId) {
         String id = String.valueOf(System.currentTimeMillis());
-        System.out.print("Type product id: ");
-        String productId = scanner.next();
-        System.out.print("Type bill id: ");
-        String billId = scanner.next();
+
         System.out.print("Type quantity: ");
         int quantity = scanner.nextInt();
 

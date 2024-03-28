@@ -14,49 +14,54 @@ public class ProductController {
         this.model = new ProductModel();
     }
 
-    public void addProduct() {
-        System.out.print("Product name: ");
-        String name = scanner.next();
-        System.out.print("Price: ");
+    public void saveProduct(){
+        System.out.print("Type id product: ");
+        String id = scanner.next();
+        System.out.print("Type product name: ");
+        String customer =  scanner.next();;
+        System.out.print("Type price product: ");
         double price = scanner.nextDouble();
-        String id = String.valueOf(System.currentTimeMillis());
 
-        Product product = new Product(id,name,price);
+        Product product = new Product(id,customer,price);
 
         model.saveProduct(product);
     }
 
-    public void updateProduct() {
-        System.out.print("Product name: ");
-        String name = scanner.next();
-        System.out.print("Price: ");
-        double price = scanner.nextDouble();
-
-        Product product = new Product(name, price);
-
-        model.updateProduct(product);
-    }
-
-    public void deleteProduct() {
-        System.out.print("Product id: ");
+    public void deleteProduct(){
+        System.out.print("Type id product: ");
         String id = scanner.next();
 
         model.deleteProduct(id);
     }
 
-    public Product listProductById() {
-        System.out.print("Product id: ");
+    public void updateProduct(){
+        System.out.print("Type id product: ");
+        String id = scanner.next();
+        System.out.print("Type customer name: ");
+        String customer =  scanner.next();;
+        System.out.print("Type price product: ");
+        double price = scanner.nextDouble();
+
+        Product product = new Product(id,customer,price);
+
+        model.updateProduct(product);
+    }
+
+    public void listProducts(){
+        for (Product product : model.findAll()){
+            System.out.println(product.toString());
+        }
+    }
+
+    public void listProductById(){
+        System.out.print("Type id product: ");
         String id = scanner.next();
 
         Product product = model.findById(id);
 
         System.out.println(product.toString());
-        return  product;
+
     }
 
-    public void listProduct() {
-        for (Product product : model.findAll()){
-            System.out.println(product.toString());
-        }
-    }
+
 }

@@ -11,7 +11,11 @@ public class BillDetailService {
     }
 
     public double calculateSubtotal(String productId, int quantity) {
+
         Product product = model.findById(productId);
-        return product.getPrice() * quantity;
+
+        //double subtotal = product.getPrice() * quantity;
+
+        return  product.getPrice() * quantity;
     }
 }
